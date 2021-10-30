@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">stikerinbot</h1>
 
-
+alay 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/ariffb25/stikerinbot)
 
 [![Grup WhatsApp](https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/GVwpKf83s42D1CnIfDW19G)
@@ -16,8 +16,8 @@
 * Unduh & Instal ImageMagick [`Klik Disini`](https://imagemagick.org/script/download.php)
 
 ```bash
-git clone https://github.com/ariffb25/stikerinbot
-cd stikerinbot
+git clone https://github.com/rahmad13/dreambot
+cd dreambot
 npm i
 npm update
 node .
@@ -27,8 +27,8 @@ node .
 
 ## UNTUK PENGGUNA TERMUX
 ```bash
-git clone https://github.com/ariffb25/stikerinbot --branch termux
-cd stikerinbot
+git clone https://github.com/rahmad13/dreambot --branch termux
+cd dreambot
 npm i
 npm update
 node .

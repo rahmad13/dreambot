@@ -202,7 +202,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
 ⛧ Uang 💰 : *${money}*
 ⛧ Level 🖲️ *${level}* 
 ⛧ Xp 🔮: *${exp}*`.trim(),
-          "description": "```Kalok Menunya Gak Bisa di pencet Tinggal Ketik\n/menu all```",
+          "description": "```NOTE: kalok mau masukin ke grup izin dulu ke owner caranya \nketik: /owner```",
           "buttonText": "List Menu Dream∆Bot",
           "listType": "SINGLE_SELECT",
           "sections": [

@@ -8,7 +8,7 @@ const defaultMenu = {
   before: `
 ༺ _*Dream Bot*_ ༻
 ⛧ Hai 👋, %name!
-
+%readmore
 ⛧Tersisa ⏳: *%limit Limit*
 ⛧ Role 👤: *%role*
 ⛧ Pekerjaan 🔱 : *%job*

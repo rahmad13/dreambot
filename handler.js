@@ -422,11 +422,12 @@ module.exports = {
               } else {
                 wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatewelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
                 lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatebye?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
-                this.sendFile(jid, action === 'add' ? wel : lea, 'pp.jpg', text, null, false, {
-                  contextInfo: {
+                await this.sendButtonLoc(jid, await (await fetch(action === 'add' ? wel : lea)).buffer(), text, wm, action === 'add' ? 'WELCOME' : 'GOODBYE', action === 'add' ? 'null' : 'null', null, {
+                thumbnail: await (await fetch(action === 'add' ? wel : lea)).buffer(),
+                contextInfo: {
                     mentionedJid: [user]
-                  }
-                })
+              }
+             })
               }
             }
           }

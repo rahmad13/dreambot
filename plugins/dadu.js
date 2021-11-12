@@ -9,7 +9,7 @@ let handler  = async (m, { conn, args }) => {
   random = dir[Math.floor(Math.random() * dir.length)]
   conn.sendFile(m.chat, `${random}`, 'dadu.webp', '', m)
 }
-handler.help = ['dadu']
+handler.help = ['dadu', '🎲']
 handler.tags = ['sticker', 'fun']
 handler.customPrefix = ['dadu', '🎲']
 handler.command = new RegExp

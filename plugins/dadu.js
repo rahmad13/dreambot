@@ -12,6 +12,6 @@ let handler  = async (m, { conn, args }) => {
 handler.help = ['dadu']
 handler.tags = ['sticker', 'fun']
 handler.customPrefix = ['dadu', '🎲']
-handler.command = /^(dadu|🎲)$/i
+handler.command = new RegExp
 
 module.exports = handler

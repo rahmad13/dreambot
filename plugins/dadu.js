@@ -15,3 +15,4 @@ handler.customPrefix = /^(dadu|🎲)$/i
 handler.command = new RegExp
 
 module.exports = handler
+

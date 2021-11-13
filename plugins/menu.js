@@ -38,11 +38,12 @@ ${'```Dream∆Bot Adalah Bot Whatsapp Ringan```'}
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let tags
   let teks = `${args[0]}`.toLowerCase()
-  let arrayMenu = ['all', 'game', 'jadian', 'xp', 'stiker', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'internet', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'audio', 'jadibot', 'info', 'tanpakategori', 'owner']
+  let arrayMenu = ['all', 'game', 'jadian', 'xp', 'stiker', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'internet', 'vote', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'audio', 'jadibot', 'info', 'tanpakategori', 'owner']
   if (!arrayMenu.includes(teks)) teks = '404'
   if (teks == 'all') tags = {
     'main': 'Utama',
     'game': 'Game',
+'rpg': 'RPG', 
     'jadian': 'Jadian', 
     'xp': 'Exp & Limit',
     'sticker': 'Stiker',
@@ -68,6 +69,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   }
   if (teks == 'game') tags = {
     'game': 'Game'
+  }
+if (teks == 'rpg') tags = {
+    'game': 'RPG'
   }
   if (teks == 'jadian') tags = {
     'jadian': 'Jadian'
@@ -216,6 +220,10 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                   "title": "Game",
                   "description": "",
                   "rowId": "/? game"
+                 }, {
+"title": "RPG",
+                  "description": "",
+                  "rowId": "/? rpg"
                  }, {
                   "title": "Jadian",
                   "description": "",

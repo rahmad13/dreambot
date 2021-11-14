@@ -168,7 +168,7 @@ module.exports = {
                 if (!('name' in user)) user.name = this.getName(m.sender)
                 if (!isNumber(user.age)) user.age = -1
                 if (!isNumber(user.regTime)) user.regTime = -1
-                if (!user.role) user.role = 'Beginner
+                if (!user.role) user.role = 'Beginner'
           if (!('pasangan' in user)) user.pasangan = ''
         } else global.db.data.users[m.sender] = {
          healt: 100,

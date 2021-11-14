@@ -11,7 +11,6 @@ const defaultMenu = {
 %readmore
 ⛧Tersisa ⏳: *%limit Limit*
 ⛧ Role 👤: *%role*
-⛧ Pekerjaan 🔱 : *%job*
 ⛧ Uang 💰 : *%money*
 ⛧ Level 🖲️ *%level (%exp / %maxexp)* 
 ⛧ Xp 🔮: *%exp*
@@ -38,7 +37,7 @@ ${'```Dream∆Bot Adalah Bot Whatsapp Ringan```'}
 let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   let tags
   let teks = `${args[0]}`.toLowerCase()
-  let arrayMenu = ['all', 'game', 'jadian', 'xp', 'stiker', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'internet', 'vote', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'audio', 'jadibot', 'info', 'tanpakategori', 'owner']
+  let arrayMenu = ['all', 'game', 'rpg', 'jadian', 'xp', 'stiker', 'kerangajaib', 'quotes', 'admin', 'grup', 'premium', 'internet', 'vote', 'anonymous', 'nulis', 'downloader', 'tools', 'fun', 'database', 'quran', 'audio', 'jadibot', 'info', 'tanpakategori', 'owner']
   if (!arrayMenu.includes(teks)) teks = '404'
   if (teks == 'all') tags = {
     'main': 'Utama',
@@ -147,7 +146,7 @@ if (teks == 'rpg') tags = {
 
   try {
     let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'))
-    let { exp, limit, level, money, job, role, registered } = global.db.data.users[m.sender]
+    let { exp, limit, level, money, role, registered } = global.db.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let name = registered ? global.db.data.users[m.sender].name : conn.getName(m.sender)
     let d = new Date(new Date + 3600000)
@@ -202,7 +201,6 @@ if (teks == 'rpg') tags = {
           "title": `${ucapan()} ${name}
 ⛧Tersisa ⏳: *${limit} Limit*
 ⛧ Role 👤: *${role}*
-⛧ Pekerjaan 🔱 : *${job}*
 ⛧ Uang 💰 : *${money}*
 ⛧ Level 🖲️ *${level}* 
 ⛧ Xp 🔮: *${exp}*`.trim(),

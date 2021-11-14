@@ -395,7 +395,7 @@ if (teks == 'rpg') tags = {
       totalexp: exp,
       xp4levelup: max - exp <= 0 ? `Siap untuk *${_p}levelup*` : `${max - exp} XP lagi untuk levelup`,
       github: package.homepage ? package.homepage.url || package.homepage : '[unknown github url]',
-      level, job, money, limit, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
+      level, money, limit, name, weton, week, date, dateIslamic, time, totalreg, rtotalreg, role,
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])

@@ -70,7 +70,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'game': 'Game'
   }
 if (teks == 'rpg') tags = {
-    'game': 'RPG'
+    'rpg': 'RPG'
   }
   if (teks == 'jadian') tags = {
     'jadian': 'Jadian'

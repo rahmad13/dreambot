@@ -28,7 +28,7 @@ module.exports = {
         let user = global.db.data.users[m.sender]
         if (typeof user !== 'object') global.db.data.users[m.sender] = {}
         if (user) {
-                        if (!isNumber(user.healt)) user.healt = 0
+            if (!isNumber(user.healt)) user.healt = 0
             if (!isNumber(user.stamina)) user.stamina = 0
             if (!isNumber(user.level)) user.level = 0
             if (!isNumber(user.exp)) user.exp = 0
@@ -43,7 +43,6 @@ module.exports = {
             if (!isNumber(user.pertanian)) user.pertanian = 0
             if (!isNumber(user.tambang)) user.tambang = 0
             
-            //
             if (!isNumber(user.diamond)) user.diamond = 0
             if (!isNumber(user.iron)) user.iron = 0
 
@@ -68,7 +67,8 @@ module.exports = {
             if (!isNumber(user.rubahlastclaim)) user.rubahlastclaim = 0
             if (!isNumber(user.anjing)) user.anjing = 0
             if (!isNumber(user.anjinglastclaim)) user.anjinglastclaim = 0
-            //Penambah STAMINA
+            
+
              if (!isNumber(user.apel)) user.apel = 0
              if (!isNumber(user.ayamb)) user.ayamb = 0
              if (!isNumber(user.ayamg)) user.ayamg = 0
@@ -93,7 +93,6 @@ module.exports = {
             if (!isNumber(user.kuli)) user.kuli = false
             if (!isNumber(user.montir)) user.montir = false
             if (!isNumber(user.job)) user.job = false
-            //last Job
             if (!isNumber(user.lastjb)) user.lastjb = 0
             
             if (!isNumber(user.nila)) user.nila = 0
@@ -112,7 +111,7 @@ module.exports = {
      if (!isNumber(user.ikan)) user.ikan = 0
      if (!isNumber(user.orca)) user.orca = 0
         
-        if (!isNumber(user.banteng)) user.banteng = 0
+     if (!isNumber(user.banteng)) user.banteng = 0
      if (!isNumber(user.harimau)) user.harimau = 0
      if (!isNumber(user.gajah)) user.gajah = 0
      if (!isNumber(user.kambing)) user.kambing = 0
@@ -124,8 +123,9 @@ module.exports = {
      if (!isNumber(user.babihutan)) user.babihutan = 0
      if (!isNumber(user.babi)) user.babi = 0
      if (!isNumber(user.ayam)) user.ayam = 0
-     //
-      if (!isNumber(user.lastberbru)) user.lastberbru = 0
+   
+
+            if (!isNumber(user.lastberbru)) user.lastberbru = 0
             if (!isNumber(user.anakkucing)) user.anakkucing = 0
             if (!isNumber(user.anakkuda)) user.anakkuda = 0
             if (!isNumber(user.anakrubah)) user.anakrubah = 0
@@ -162,14 +162,14 @@ module.exports = {
             if (!isNumber(user.lasthunt)) user.lasthunt = 0
             if (!isNumber(user.lastweekly)) user.lastweekly = 0
             if (!isNumber(user.lastmonthly)) user.lastmontly = 0
+            if (!('pasangan' in user)) user.pasangan = ''
             if (!('kingdom' in user)) user.kingdom = false
             if (!('registered' in user)) user.registered = false
             if (!user.registered) {
                 if (!('name' in user)) user.name = this.getName(m.sender)
                 if (!isNumber(user.age)) user.age = -1
                 if (!isNumber(user.regTime)) user.regTime = -1
-                if (!user.role) user.role = 'Beginner'
-          if (!('pasangan' in user)) user.pasangan = ''
+                if (!user.role) user.role = 'Beginner
         } else global.db.data.users[m.sender] = {
          healt: 100,
             stamina: 100,

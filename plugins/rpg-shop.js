@@ -17,6 +17,10 @@ const Ssampah = 2
 let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
     const _armor = global.db.data.users[m.sender].armor
     const armor = (_armor == 0 ? 20000 : '' || _armor == 1 ? 49999 : '' || _armor == 2 ? 99999 : '' || _armor == 3 ? 149999 : '' || _armor == 4 ? 299999 : '')
+    const _sword = global.db.data.users[m.sender].sword
+    const sword = (_sword == 0 ? 20000 : '' || _sword == 1 ? 49999 : '' || _sword == 2 ? 99999 : '' || _sword == 3 ? 149999 : '' || _sword == 4 ? 299999 : '')
+    const _pickaxe = global.db.data.users[m.sender].pickaxe
+    const pickaxe = (_pickaxe == 0 ? 20000 : '' || _pickaxe == 1 ? 49999 : '' || _pickaxe == 2 ? 99999 : '' || _pickaxe == 3 ? 149999 : '' || _pickaxe == 4 ? 299999 : '')
     let type = (args[0] || '').toLowerCase()
     let _type = (args[1] || '').toLowerCase()
     let jualbeli = (args[0] || '').toLowerCase()
@@ -28,12 +32,20 @@ Contoh penggunaan: *${usedPrefix}shop buy potion 1*\n\n
 🎣Pancingan ${pancing}
 💊Potion:       ${potion}
 💎Diamond:     ${Bdiamond}
+
+*CRATE*
+
 📦Common:     ${Bcommon}
 📦Uncommon:  ${Buncommon}
 🎁Mythic:     ${Bmythic}
 🎁Legendary: ${Blegendary}
 🗑️Sampah:     ${Bsampah}
-🛡️Armor:       ${armor}\n\n
+
+*SENJATA*
+
+🛡️Armor:       ${armor}
+⛏️Pick axe: ${pickaxe}
+🗡️Sword:  ${sword}\n\n
 *📦Barang   | Harga Jual*\n
 💊Potion:       ${Spotion}
 💎Diamond:     ${Sdiamond}
@@ -121,6 +133,24 @@ if (global.db.data.users[m.sender].pancing == 1 ) throw 'Lu dah punya'
                                 global.db.data.users[m.sender].money -= armor * 1
                                 conn.reply(m.chat, `Succes membeli armor seharga ${armor} money` ,m)
                             } else conn.reply(m.chat, `uang mu tidak cukup untuk membeli armor seharga ${armor} money`, m)
+                        
+                        break
+                        case 'sword':
+                            if (global.db.data.users[m.sender].sword == 5) return conn.reply(m.chat, 'swordmu sudah *Level Max*', m)
+                            if (global.db.data.users[m.sender].money > sword) {
+                                global.db.data.users[m.sender].sword += 1
+                                global.db.data.users[m.sender].money -= sword * 1
+                                conn.reply(m.chat, `Succes membeli sword seharga ${sword} money` ,m)
+                            } else conn.reply(m.chat, `uang mu tidak cukup untuk membeli sword seharga ${sword} money`, m)
+                        
+                        break
+                        case 'pickaxe':
+                            if (global.db.data.users[m.sender].pickaxe == 5) return conn.reply(m.chat, 'pickaxemu sudah *Level Max*', m)
+                            if (global.db.data.users[m.sender].money > pickaxe) {
+                                global.db.data.users[m.sender].pickaxe += 1
+                                global.db.data.users[m.sender].money -= pickaxe * 1
+                                conn.reply(m.chat, `Succes membeli pickaxe seharga ${pickaxe} money` ,m)
+                            } else conn.reply(m.chat, `uang mu tidak cukup untuk membeli pickaxe seharga ${pickaxe} money`, m)
                         
                         break
                     default:

@@ -153,6 +153,7 @@ module.exports = {
             if (!isNumber(user.lastadventure)) user.lastadventure = 0
             if (!isNumber(user.lastfishing)) user.lastfishing = 0
             if (!isNumber(user.lastdungeon)) user.lastdungeon = 0
+            if (!isNumber(user.lastbansos)) user.lastbansos = 0
             
             if (!isNumber(user.lastsda)) user.lastsda = 0
             if (!isNumber(user.lastsda)) user.lastwar = 0
@@ -172,6 +173,7 @@ module.exports = {
             }
             if (!('autolevelup' in user)) user.autolevelup = true
             if (!('pasangan' in user)) user.pasangan = ''
+            if (!('nikah' in user)) user.nikah = ''
         } else global.DATABASE._data.users[m.sender] = {
             healt: 100,
             stamina: 100,

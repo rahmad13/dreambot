@@ -1,7 +1,7 @@
 let { MessageType } = require('@adiwajshing/baileys')
 let fs = require('fs')
 
-let handler = async (m, { conn, args, usedPrefix.}) => {
+let handler = async (m, { conn, args, usedPrefix}) => {
   try {
     global.db.data.users[m.sender].lastbansos = global.db.data.users[m.sender].lastbansos || 0
     let randomaku = `${Math.floor(Math.random() * 101)}`.trim()

@@ -63,11 +63,11 @@ ${M(p1)}, ${M(p2)}, ${M(p3)}, ${M(p4)} dan ${M(p5)}
 Sedang bermain true mafia...
 `.trim()
 
- handler.help = ['truemafia']
+handler.help = ['truemafia']
 handler.tags = ['game']
 handler.command = /^mafia$/i
 
-
+module.exports = handler
 
 
 function clockString(ms) {

@@ -145,6 +145,8 @@ module.exports = {
             if (!isNumber(user.sworddurability)) user.sworddurability = 0
             if (!isNumber(user.pickaxe)) user.pickaxe = 0
             if (!isNumber(user.pickaxedurability)) user.pickaxedurability = 0
+            if (!isNumber(user.ax)) user.ax = 0
+            if (!isNumber(user.axdurability)) user.axdurability = 0
             if (!isNumber(user.fishingrod)) user.fishingrod = 0
             if (!isNumber(user.fishingroddurability)) user.fishingroddurability = 0
            //KERAJAAN
@@ -279,6 +281,8 @@ module.exports = {
             sworddurability: 0,
             pickaxe: 0,
             pickaxedurability: 0,
+            ax: 0,
+            axdurability: 0,
             fishingrod: 0,
             fishingroddurability: 0,
             lastadventure: 0,

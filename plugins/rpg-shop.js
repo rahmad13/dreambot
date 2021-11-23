@@ -135,6 +135,14 @@ if (global.db.data.users[m.sender].pancing == 1 ) throw 'Lu dah punya'
                             } else conn.reply(m.chat, `Uang anda tidak cukup untuk membeli ${count} Kayu dengan harga ${Bkayu * count} money`, m)
                         
                         break
+                       case 'iron':
+                            if (global.db.data.users[m.sender].money >= Biron * count) {
+                                global.db.data.users[m.sender].iron += count * 1
+                                global.db.data.users[m.sender].money -= Biron * count
+                                conn.reply(m.chat, `Succes membeli ${count} iron dengan harga ${Birom * count} money`, m)
+                            } else conn.reply(m.chat, `Uang anda tidak cukup untuk membeli ${count} iron dengan harga ${Biron * count} money`, m)
+                        
+                        break
                         case 'common':
                             if (global.db.data.users[m.sender].money >= Biron * count) {
                                 global.db.data.users[m.sender].iron+= count * 1

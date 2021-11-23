@@ -1,20 +1,15 @@
-/*
-* THX TO
-* Allah SWT
-* Ortu
-* RESTU
-* RIZXYU
-*/
 let { MessageType } = require('@adiwajshing/baileys')
 
 /*Count price*/
 let sword = 9800
 let pickaxe = 8927
+let ax = 9000
 let armor = 17290
 let pancing = 9278
 
 let Esword = 18290
 let Epickaxe = 18230
+let Eax = 18500
 let Earmor = 23847
 
 let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
@@ -22,6 +17,7 @@ let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
   let _type = (args[0] || '').toLowerCase()
   let user = global.db.data.users[m.sender]
   global.db.data.users[m.sender].pickaxe = global.db.data.users[m.sender].pickaxe || 0
+global.db.data.users[m.sender].ax = global.db.data.users[m.sender].ax || 0
   global.db.data.users[m.sender].pedang = global.db.data.users[m.sender].pedang || 0
   global.db.data.users[m.sender].pancing = global.db.data.users[m.sender].pancing || 0
   let botol = global.botwm
@@ -31,6 +27,7 @@ let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
 ⛏️pickaxe = 20
 🗡️Sword = 20
 🎣pancing = 20
+🪓kapak = 20
 `
 
   try {
@@ -44,6 +41,13 @@ let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
             global.db.data.users[m.sender].string -= 20
             global.db.data.users[m.sender].pickaxe += 1
             m.reply("Sukses membuat 1 pickaxe")
+            break
+            case 'kapak':
+            if(user.kayu < 10 || user.iron < 5) return m.reply(`Barang tidak cukup!\nUntuk membuat kapak. Kamu memerlukan : 10 kayu🪵 dan 5 iron⛓️`)
+            global.db.data.users[m.sender].kayu -= 10
+            global.db.data.users[m.sender].iron -= 5
+            global.db.data.users[m.sender].ax += 1
+            m.reply("Sukses membuat 1 kapak")
             break
           case 'sword':
             if(user.kayu < 10 || user.iron < 5 || user.string < 20) return m.reply(`Barang tidak cukup!\nUntuk membuat sword. Kamu memerlukan : 10 kayu🪵 5 iron⛓️ dan 20 String🕸️`)
@@ -82,7 +86,7 @@ let handler  = async (m, { conn, command, args, usedPrefix, DevMode }) => {
   }
 }
 
-handler.help = ['mining']
+handler.help = ['craft']
 handler.tags = ['rpg']
 handler.command = /^(craft|crafting|enchant)/i
 

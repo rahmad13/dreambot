@@ -46,6 +46,8 @@ module.exports = {
             //
             if (!isNumber(user.diamond)) user.diamond = 0
             if (!isNumber(user.iron)) user.iron = 0
+            if (!isNumber(user.string)) user.string= 0
+
 
             if (!isNumber(user.common)) user.common = 0
             if (!isNumber(user.uncommon)) user.uncommon = 0
@@ -194,6 +196,7 @@ module.exports = {
             money: 0,
             diamond: 0,
             iron: 0,
+            string: 0,
             common: 0,
             uncommon: 0,
             mythic: 0,

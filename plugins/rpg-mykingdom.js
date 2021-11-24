@@ -4,7 +4,7 @@ let { buttonsMessage, contactsArray, image, MimeType } = MessageType
 let fs = require('fs')
 //LU SIAPA?
 //JANGAN COLONG ANJG
-let handler = async (m, { conn, text, usedPrefix }) => {
+let handler = async (m, { conn, text, usedPrefix, participants }) => {
 
 let imgk = fs.readFileSync('./lib/kerajaan.jpg')
 

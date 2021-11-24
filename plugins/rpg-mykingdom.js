@@ -48,7 +48,7 @@ _[ ❕ ]YOUR KINGDOM INFO_
 ${ benteng == 0 ? 'Tidak punya benteng' : '' || benteng == 1 ? 'benteng kayu' : '' || benteng == 2 ? 'benteng beton' : '' }
 ⚔️Last war:-
 🏳️teman Aliansi:
-${aliance.replace(/@.+/, '')}
+${aliance.split(/@.+/, '')}
 ⚔️To war typing:
 ${usedPrefix}war @mention
 🏰Bangun Dan level up kerajaan

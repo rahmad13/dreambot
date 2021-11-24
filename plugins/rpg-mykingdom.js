@@ -48,7 +48,7 @@ _[ ❕ ]YOUR KINGDOM INFO_
 ${ benteng == 0 ? 'Tidak punya benteng' : '' || benteng == 1 ? 'benteng kayu' : '' || benteng == 2 ? 'benteng beton' : '' }
 ⚔️Last war:-
 🏳️teman Aliansi:
-${aliance.split(/@.+/, '')}
+${aliance}
 ⚔️To war typing:
 ${usedPrefix}war @mention
 🏰Bangun Dan level up kerajaan
@@ -59,10 +59,11 @@ ${usedPrefix}getsda
 
 
 conn.sendFile( m.chat, imgk, 'kerajaa.jpg', caption, m, false, {
-    contextInfo: {
-      mentionedJid: conn.parseMention(text)
-    }
-  })
+        contextInfo: {
+          mentionedJid: users
+        },
+        quoted: m
+      })
 }
 
 handler.help = ['mykingdom','mykrjn','kerajaanku']

@@ -60,7 +60,7 @@ ${usedPrefix}getsda
 
 conn.sendFile( m.chat, imgk, 'kerajaa.jpg', caption, m, false, {
         contextInfo: {
-          mentionedJid: users
+          mentionedJid: aliance
         },
         quoted: m
       })

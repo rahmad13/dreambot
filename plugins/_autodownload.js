@@ -14,7 +14,7 @@ handler.all = async function (m, { isPrems }) {
     let url = m.text.split(/\n| /i)[0]
 
     if (/^.*tiktok.com/i.test(m.text)) {
-        let res = await fetch(API('mel', '/tiktok', { url: 'https://vt.tiktok.com/yqyjPX/' }, 'apikey'))
+        let res = await fetch(API('mel', '/tiktok', { url }, 'apikey'))
   if (!res.ok) throw eror
   let json = await res.json()
   if (!json.status) throw json

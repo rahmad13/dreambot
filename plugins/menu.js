@@ -204,7 +204,7 @@ if (teks == 'rpg') tags = {
 ⛧ Uang 💰 : *${money}*
 ⛧ Level 🖲️ *${level}* 
 ⛧ Xp 🔮: *${exp}*`.trim(),
-          "description": "```NOTE: kalok mau masukin ke grup izin dulu ke owner caranya \nketik: /owner```",
+          "description": "```NOTE: Jangan di spam atau mau di spam balik pakek virus? ```",
           "buttonText": "List Menu Dream∆Bot",
           "listType": "SINGLE_SELECT",
           "sections": [

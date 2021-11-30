@@ -13,13 +13,13 @@ handler.all = async function (m, { isPrems }) {
 
     let url = m.text.split(/\n| /i)[0]
 
-    if (/^.*tiktok/i.test(m.text)) {
-        let res = await fetch(API('hardianto', '/api/download/tiktok', { url }, 'apikey'))
-        if (!res.ok) return m.reply(eror)
-        let json = await res.json()
-        await m.reply(wait)
-        // m.reply(util.format(json))
-        await this.sendFile(m.chat, json.nowm, '', '© stikerin', m)
+    if (/^.*tiktok.com/i.test(m.text)) {
+        let res = await fetch(API('mel', '/tiktok', { url: 'https://vt.tiktok.com/yqyjPX/' }, 'apikey'))
+  if (!res.ok) throw eror
+  let json = await res.json()
+  if (!json.status) throw json
+  await m.reply(wait)
+  await conn.sendFile(m.chat, json.result.link, '', `${json.result.caption}\n\n® Dream∆Bot`, m)
     }
 
     if (/^.*cocofun/i.test(m.text)) {

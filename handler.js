@@ -161,7 +161,7 @@ module.exports = {
             if (!isNumber(user.lastbansos)) user.lastbansos = 0
             
             if (!isNumber(user.lastsda)) user.lastsda = 0
-            if (!isNumber(user.lastsda)) user.lastwar = 0
+            if (!isNumber(user.lastwar)) user.lastwar = 0
             
             if (!isNumber(user.lastduel)) user.lastduel = 0
             if (!isNumber(user.lastmining)) user.lastmining = 0

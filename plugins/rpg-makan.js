@@ -16,7 +16,7 @@ let stamina = global.db.data.users[m.sender].stamina
     try {
         if (/makan|eat/i.test(command)) {
             const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)
-                    case 'ayamg' :
+                    case 'ayamg':
         if (global.db.data.users[m.sender].stamina < 100) {
         	if (global.db.data.users[m.sender].ayamg >= count * 1) {
                  global.db.data.users[m.sender].ayamg -= count * 1
@@ -25,7 +25,7 @@ let stamina = global.db.data.users[m.sender].stamina
            } else conn.reply(m.chat, `Anda tidak memiliki ayam goreng` ,m)
            } else conn.reply(m.chat, msgpenuh, m)
         break
-        case 'ayamb' :
+        case 'ayamb':
         if (global.db.data.users[m.sender].stamina < 100) {
         	if (global.db.data.users[m.sender].ayamb >= count * 1) {
                             global.db.data.users[m.sender].ayamb -= count * 1
@@ -34,7 +34,7 @@ let stamina = global.db.data.users[m.sender].stamina
                             } else conn.reply(m.chat, `Anda tidak memiliki ayam bakar` ,m)
         } else conn.reply(m.chat, msgpenuh, m)
         break
-        case 'leleb'
+        case 'leleb':
         if (global.db.data.users[m.sender].stamina < 100) {
         	if (global.db.data.users[m.sender].leleb >= count * 1) {
                             global.db.data.users[m.sender].leleb -= count * 1

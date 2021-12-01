@@ -4,7 +4,7 @@ let handler = async (m, {conn, command, args, usedPrefix}) => {
 let type = (args[0] || '').toLowerCase()
 let users = global.db.data.users[m.sender]
 let time = global.db.data.users[m.sender].lastjb + 300000
-//let __timers = (new Date - global.db.data.users[m.sender].lastkerja)
+//let __timers = (new Date - global.db.data.users[m.sender].lastjb)
    // let _timers = (0 - __timers)
    // let timers = clockString(_timers) 
     //JANGAN DI OTAK ATIK
@@ -61,16 +61,16 @@ if (/kerjadulu|kerja|work/i.test(command)) {
 switch(type) {
 	case 'ojek':
 	if (global.db.data.users[m.sender].ojek == false) throw 'ini bukan tugas kamu atau kamu pengangguran!'
-if (new Date - global.db.data.users[m.sender].lastkerja < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
+if (new Date - global.db.data.users[m.sender].lastjb < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
 	global.db.data.users[m.sender].money += uangm
-global.db.data.users[m.sender].lastkerja = new Date * 1
+global.db.data.users[m.sender].lastjb = new Date * 1
 	m.reply(`Kamu Sudah Mengantarkan *${penumpang}*\nDan mendapatkan uang senilai *Rp ${uangm}*`)
 break
      case 'pedagang':
      if (global.db.data.users[m.sender].pedagang == false) throw 'ini bukan tugas kamu atau kamu pengangguran!'
-if (new Date - global.db.data.users[m.sender].lastkerja < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
+if (new Date - global.db.data.users[m.sender].lastjb < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
 	global.db.data.users[m.sender].money += duit
-global.db.data.users[m.sender].lastkerja = new Date * 1
+global.db.data.users[m.sender].lastjb = new Date * 1
 	m.reply(`Ada pembeli yg membeli *${dagangan}*\nDan mendapatkan uang senilai *Rp ${duit}*`)
 	if (pecat > 1 ) {
                    global.db.data.users[m.sender].pedagang -= pecat * 1
@@ -79,40 +79,40 @@ global.db.data.users[m.sender].lastkerja = new Date * 1
 break
       case 'dokter':
  if (global.db.data.users[m.sender].dokter == false) throw 'ini bukan tugas kamu atau kamu pengangguran!'
-if (new Date - global.db.data.users[m.sender].lastkerja < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
+if (new Date - global.db.data.users[m.sender].lastjb < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
 	global.db.data.users[m.sender].money += duitm
-global.db.data.users[m.sender].lastkerja = new Date * 1
+global.db.data.users[m.sender].lastjb = new Date * 1
 	m.reply(`Kamu menyembuhkan pasien *${pasien}*\nDan mendapatkan uang senilai *Rp ${duitm}*`)
 break
        case 'petani':
 if (global.db.data.users[m.sender].petani == false) throw 'ini bukan tugas kamu atau kamu pengangguran!'
-if (new Date - global.db.data.users[m.sender].lastkerja < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
+if (new Date - global.db.data.users[m.sender].lastjb < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
 	global.db.data.users[m.sender].money += uangm
-global.db.data.users[m.sender].lastkerja = new Date * 1
+global.db.data.users[m.sender].lastjb = new Date * 1
 	m.reply(`${panen} Sudah Panen\nDan Kamu menjualnya dan mendapatkan uang senilai Rp ${duitd}`)
 break
      case 'montir':
  if (global.db.data.users[m.sender].montir == false) throw 'ini bukan tugas kamu atau kamu pengangguran!'
-if (new Date - global.db.data.users[m.sender].lastkerja < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
+if (new Date - global.db.data.users[m.sender].lastjb < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
 	global.db.data.users[m.sender].money += duitr
-global.db.data.users[m.sender].lastkerja = new Date * 1
+global.db.data.users[m.sender].lastjb = new Date * 1
 	m.reply(`Kamu Baru saja mendapatkan pelanggan dan memperbaiki *${bengkel}*\nDan kamu mendapatkan uang senilai *Rp ${duitr}*`)
 break
       case 'kuli':
  if (global.db.data.users[m.sender].kuli == false) throw 'ini bukan tugas kamu atau kamu pengangguran!'
-if (new Date - global.db.data.users[m.sender].lastkerja < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
+if (new Date - global.db.data.users[m.sender].lastjb < 300000)  throw `Kamu sudah bekerja\nSaatnya istirahat selama ${msToTime(time - new Date())}`
 	global.db.data.users[m.sender].money += duitk
-global.db.data.users[m.sender].lastkerja = new Date * 1
+global.db.data.users[m.sender].lastjb = new Date * 1
 	m.reply(`Kamu baru saja selesai ${rumah}\nDan condapatkan uang senilai *Rp ${duitk}*`)
 break
 default:
-                        return conn.sendButton( m.chat, kerjam, `Games Bot`,`Back`,'.gmenu')
+                        return conn.sendButton( m.chat, kerjam, `Dream∆Bot`,`Back`,'.menu rpg', m)
                 }
                 }
                 
                 }
 ///AKSJDDJ
-handler.help = ['kerja','work']
+handler.help = ['kerja']
 handler.tags = ['rpg']
 handler.command = /^kerja$/i 
 

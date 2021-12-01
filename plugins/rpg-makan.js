@@ -9,6 +9,7 @@ Contoh penggunaan: *${usedPrefix}makan ayamg 1*\n\n
 ayamg
 ayamb
 leleb
+`.trim()
 let stamina = global.db.data.users[m.sender].stamina
  let kucing = global.db.data.users[m.sender].kucing
         let spertamina= (kucing == 0 ? 40 : '' || kucing == 1 ? 45 : '' || kucing == 2 ? 50 : '' || kucing == 3 ? 55 : '' || kucing == 4 ? 60 : '' || kucing == 5 ? 65 : '' || kucing == 6 ? 70 : '' || kucing == 7 ? 75 : '' || kucing == 8 ? 80 : '' || kucing == 9 ? 85 : '' || kucing == 10 ? 90 : '')

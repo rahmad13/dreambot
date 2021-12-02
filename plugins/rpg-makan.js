@@ -9,7 +9,6 @@ let handler  = async (m, { conn, command, args, usedPrefix, Owner}) => {
     let kucing = global.db.data.users[m.sender].kucing
     let spertamina= (kucing == 0 ? 40 : '' || kucing == 1 ? 45 : '' || kucing == 2 ? 50 : '' || kucing == 3 ? 55 : '' || kucing == 4 ? 60 : '' || kucing == 5 ? 65 : '' || kucing == 6 ? 70 : '' || kucing == 7 ? 75 : '' || kucing == 8 ? 80 : '' || kucing == 9 ? 85 : '' || kucing == 10 ? 90 : '')
     const Kchat = `
-${usedPrefix}makan <item> <jumlah>\n
 Contoh penggunaan: *${usedPrefix}makan ayamg 1*\n\n
 ⚠️List Makanan:\n\n
 ayamg

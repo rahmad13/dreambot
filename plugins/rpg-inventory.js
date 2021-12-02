@@ -66,7 +66,7 @@ let banteng = global.db.data.users[m.sender].banteng
     let str = `
 📥Inventory *${name.vnmae || name.notify || name.name || ('+' + name.jid.split`@`[0])}*\n
 ♥️Health: *${healt}*
-🍸Stamina: *${stamina}
+🍸Stamina: *${stamina}*
 🛡️Armor: *${armor == 0 ? 'Tidak Punya' : '' || armor == 1 ? 'Leather Armor' : '' || armor == 2 ? 'Iron Armor' : '' || armor == 3 ? 'Gold Armor' : '' || armor == 4 ? 'Diamond Armor' : '' || armor == 5 ? 'Netherite Armor' : ''}*
 ⚔️Pedang:
 🎣Pancingan: ${ pancing == 0 ? 'Tidak punya' : '' || pancing == 1 ? 'kail pancing kayu' : '' }
@@ -140,7 +140,7 @@ Total inv: *${diamond + potion + sampah + makananpet}* item\n
 ⚠️Warn: *${warn}*
 ❎Banned: *No*
 `.trim()
-    conn.sendButton(m.chat, str, `🎮Games Wa Bot`, `Back To Home`, `.menu`)
+    conn.sendButton(m.chat, str, `Dream∆Bot`, `Back To Home`, `.menu`,m)
 }
 handler.help = ['inventory', 'inv']
 handler.tags = ['rpg']

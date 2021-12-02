@@ -16,7 +16,8 @@ let stamina = global.db.data.users[m.sender].stamina
     try {
         if (/makan|eat/i.test(command)) {
             const count = args[2] && args[2].length > 0 ? Math.min(99999999, Math.max(parseInt(args[2]), 1)) : !args[2] || args.length < 4 ? 1 :Math.min(1, count)
-        case 'ayamg':
+          switch(type) {
+      case 'ayamg':
         if (global.db.data.users[m.sender].stamina < 100) {
         	if (global.db.data.users[m.sender].ayamg >= count * 1) {
                  global.db.data.users[m.sender].ayamg -= count * 1

@@ -24,7 +24,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   if (teks == 'all') tags = {
     'main': 'Utama',
     'game': 'Game',
-    'rpg': 'RPG', 
+'rpg': 'RPG', 
     'jadian': 'Jadian', 
     'xp': 'Exp & Limit',
     'sticker': 'Stiker',
@@ -48,77 +48,77 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'info': 'Info',
     '': 'Tanpa Kategori',
   }
-  if (teks == 'menu game') tags = {
+  if (teks == 'game') tags = {
     'game': 'Game'
   }
-if (teks == 'menu rpg') tags = {
+if (teks == 'rpg') tags = {
     'rpg': 'RPG'
   }
-  if (teks == 'menu jadian') tags = {
+  if (teks == 'jadian') tags = {
     'jadian': 'Jadian'
   }
-  if (teks == 'menu xp') tags = {
+  if (teks == 'xp') tags = {
     'xp': 'Exp & Limit'
   }
-  if (teks == 'menu stiker') tags = {
+  if (teks == 'stiker') tags = {
     'sticker': 'Stiker'
   }
-  if (teks == 'menu kerangajaib') tags = {
+  if (teks == 'kerangajaib') tags = {
     'kerang': 'Kerang Ajaib'
   }
-  if (teks == 'menu quotes') tags = {
+  if (teks == 'quotes') tags = {
     'quotes': 'Quotes'
   }
-  if (teks == 'menu admin') tags = {
+  if (teks == 'admin') tags = {
     'admin': 'Admin'
   }
-  if (teks == 'menu grup') tags = {
+  if (teks == 'grup') tags = {
     'group': 'Grup'
   }
-  if (teks == 'menu premium') tags = {
+  if (teks == 'premium') tags = {
     'premium': 'Premium'
   }
-  if (teks == 'menu internet') tags = {
+  if (teks == 'internet') tags = {
     'internet': 'Internet'
   }
-  if (teks == 'menu anonymous') tags = {
+  if (teks == 'anonymous') tags = {
     'anonymous': 'Anonymous Chat'
   }
-  if (teks == 'menu nulis') tags = {
+  if (teks == 'nulis') tags = {
     'nulis': 'MagerNulis & Logo'
   }
-  if (teks == 'menu downloader') tags = {
+  if (teks == 'downloader') tags = {
     'downloader': 'Downloader'
   }
-  if (teks == 'menu tools') tags = {
+  if (teks == 'tools') tags = {
     'tools': 'Tools'
   }
-  if (teks == 'menu fun') tags = {
+  if (teks == 'fun') tags = {
     'fun': 'Fun'
   }
-  if (teks == 'menu database') tags = {
+  if (teks == 'database') tags = {
     'database': 'Database'
   }
-  if (teks == 'menh vote & absen') tags = {
+  if (teks == 'vote') tags = {
     'vote': 'Voting',
     'absen': 'Absen'
   }
-  if (teks == 'menu quran') tags = {
+  if (teks == 'quran') tags = {
     'quran': 'Al Qur\'an'
   }
-  if (teks == 'menu audio') tags = {
+  if (teks == 'audio') tags = {
     'audio': 'Pengubah Suara'
   }
-  if (teks == 'menu jadibot') tags = {
+  if (teks == 'jadibot') tags = {
     'jadibot': 'Jadi Bot'
   }
-  if (teks == 'menu info') tags = {
+  if (teks == 'info') tags = {
     'info': 'Info'
   }
   if (teks == 'tanpakategori') tags = {
     '': 'Tanpa Kategori'
   }
-  if (teks == 'menu owner') tags = {
+  if (teks == 'owner') tags = {
     'owner': 'Owner',
     'host': 'Host',
     'advanced': 'Advanced'

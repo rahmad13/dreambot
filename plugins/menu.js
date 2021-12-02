@@ -7,7 +7,6 @@ let moment = require('moment-timezone')
 const defaultMenu = {
   before: `
 ༺ _*Dream Bot*_ ༻
-⛧ Hai 👋, %name!
 %readmore`.trimStart(),
   header: '◪ ༺ _*%category*_ ༻',
   body: '✧  %cmd %islimit %isPremium',

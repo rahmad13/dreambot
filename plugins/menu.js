@@ -8,23 +8,6 @@ const defaultMenu = {
   before: `
 ༺ _*Dream Bot*_ ༻
 ⛧ Hai 👋, %name!
-%readmore
-⛧Tersisa ⏳: *%limit Limit*
-⛧ Role 👤: *%role*
-⛧ Uang 💰 : *%money*
-⛧ Level 🖲️ *%level (%exp / %maxexp)* 
-⛧ Xp 🔮: *%exp*
-
- 
- 
-⛧ Hari 🗓️: *%week %weton*
-⛧ Tgl 📅: *%date*
-⛧ Tgl Islam 📆: *%dateIslamic*
-⛧ Waktu ⌛: *%time*
-
-⛧ Uptime: *%uptime (%muptime)*
-⛧ Database: %rtotalreg dari %totalreg
-༶•┈┈⛧┈♛┈⛧┈┈•༶\n
 %readmore`.trimStart(),
   header: '◪ ༺ _*%category*_ ༻',
   body: '✧  %cmd %islimit %isPremium',
@@ -203,7 +186,15 @@ if (teks == 'rpg') tags = {
 ⛧ Role 👤: *${role}*
 ⛧ Uang 💰 : *${money}*
 ⛧ Level 🖲️ *${level}* 
-⛧ Xp 🔮: *${exp}*`.trim(),
+⛧ Xp 🔮: *${exp}*
+
+⛧ Hari 🗓️: *${week} ${weton}*
+⛧ Tgl 📅: *${date}*
+⛧ Tgl Islam 📆: *${dateIslamic}*
+⛧ Waktu ⌛: *${time}*
+
+⛧ Uptime: *${uptime}*
+⛧ Database: ${rtotalreg} dari ${totalreg}`.trim(),
           "description": "```NOTE: Jangan di spam atau mau di spam balik pakek virus? ```",
           "buttonText": "List Menu Dream∆Bot",
           "listType": "SINGLE_SELECT",

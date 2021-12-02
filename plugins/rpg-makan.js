@@ -1,10 +1,9 @@
 let { MessageType } = require('@adiwajshing/baileys')
-
+let type = (args[0] || '').toLowerCase()
 let handler  = async (m, { conn, command, args, usedPrefix, Owner}) => {
-        let msgerror = (pickRandom(['Error', 'astagfirullah error', 'Nice Error', 'Salah format keknya :v', 'error bro', 'Kocak error :v', 'wtf error :v', 'Ciaaa error', 'error cuyy', 'dahlah (emot batu) error']))
-    let msgpenuh = (pickRandom(['staminamu sudah penuh', 'coba deh liat inv mu, staminamu kan dah 100 ngapai makan lagi?', 'stamina mu dah penuh woyy', 'ws kebek weh :v', 'staminamu dah penuh :v', 'udh weh, udh penuh']))
-    const Kchat = `
-${usedPrefix}makan <item> <jumlah>\n
+let msgerror = (pickRandom(['Error', 'astagfirullah error', 'Nice Error', 'Salah format keknya :v', 'error bro', 'Kocak error :v', 'wtf error :v', 'Ciaaa error', 'error cuyy', 'dahlah (emot batu) error']))
+let msgpenuh = (pickRandom(['staminamu sudah penuh', 'coba deh liat inv mu, staminamu kan dah 100 ngapai makan lagi?', 'stamina mu dah penuh woyy', 'ws kebek weh :v', 'staminamu dah penuh :v', 'udh weh, udh penuh']))
+const Kchat = `${usedPrefix}makan <item> <jumlah>\n
 Contoh penggunaan: *${usedPrefix}makan ayamg 1*\n\n
 ⚠️List Makanan:\n\n
 ayamg

@@ -33,7 +33,7 @@ const anu = {
   let teks = text ? text : cc.text
   let content = await conn.cMod(m.chat, cc, /bc|broadcast/i.test(teks) ? teks : teks + '\n' + readMore + '「 All Group Broadcast 」')
   conn.reply(m.chat, `_Mengirim pesan broadcast ke ${groups.length} grup_`, m)
-  for (let id of groups) conn.copyNForward(id, content, 'conversation',{quoted: anu, thumbnail: global.thumb, contextInfo:{externalAdReply: {title: `© ${conn.user.name} By Rhmd` , body: '>///<', sourceUrl: 'https://chat.whatsapp.com/Jobz56qjFTyHVYuzQPnrih', thumbnail: global.thumb}}} ,true)
+  for (let id of groups) conn.copyNForward(id, content, 'conversation',{quoted: anu, thumbnail: global.thumb, contextInfo:{externalAdReply: {title: `© ${conn.user.name} By Rhmd` , body: '>///<', sourceUrl: 'https://chat.whatsapp.com/KIqAibM7DJyEprS8AdKVNL', thumbnail: global.thumb}}} ,true)
   conn.reply(m.chat, `_Done_`, m)
 }
 handler.help = ['broadcastgroup','bcgc'].map(v => v + ' <teks>')

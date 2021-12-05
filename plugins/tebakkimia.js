@@ -1,34 +1,23 @@
-let fetch = require('node-fetch')
-
-let timeout = 120000
-let poin = 500
-let handler = async (m, { conn, usedPrefix }) => {
-    conn.tebakkimia = conn.tebakkimia ? conn.tebakkimia : {}
-    let id = m.chat
-    if (id in conn.tebakkimia) {
-        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebakkimia[id][0])
-        throw false
-    }
-    let src = await (await fetch('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkimia.json')).json()
-    let json = src[Math.floor(Math.random() * src.length)]
-    let caption = `
-Nama unsur dari lambang ${json.lambang} adalah...
-
-Timeout *${(timeout / 1000).toFixed(2)} detik*
-Ketik ${usedPrefix}teki untuk bantuan
-Bonus: ${poin} XP
-`.trim()
-    conn.tebakkimia[id] = [
-        await conn.sendButton(m.chat, caption, '© stikerin', 'Bantuan', '.teki'),
-        json, poin,
-        setTimeout(async () => {
-            if (conn.tebakkimia[id]) await conn.sendButton(m.chat, `Waktu habis!\nJawabannya adalah *${json.unsur}*`, '© stikerin', 'Tebak Kimia', '.tebakkimia', conn.tebakkimia[id][0])
-            delete conn.tebakkimia[id]
-        }, timeout)
-    ]
+const similarity = require('similarity')
+const threshold = 0.72
+module.exports = {
+    async before(m) {
+        let id = m.chat
+        if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !/Ketik.*teki/i.test(m.quoted.text)) return !0
+        this.tebakkimia = this.tebakkimia ? this.tebakkimia : {}
+        if (!(id in this.tebakkimia)) return m.reply('Soal itu telah berakhir')
+        if (m.quoted.id == this.tebakkimia[id][0].id) {
+            let json = JSON.parse(JSON.stringify(this.tebakkimia[id][1]))
+            // m.reply(JSON.stringify(json, null, '\t'))
+            if (m.text.toLowerCase() == json.unsur.toLowerCase().trim()) {
+                global.db.data.users[m.sender].exp += this.tebakkimia[id][2]
+                m.reply(`*Benar!*\n+${this.tebakkimia[id][2]} XP`)
+                clearTimeout(this.tebakkimia[id][3])
+                delete this.tebakkimia[id]
+            } else if (similarity(m.text.toLowerCase(), json.unsur.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
+            else m.reply(`*Salah!*`)
+        }
+        return !0
+    },
+    exp: 0
 }
-handler.help = ['tebakkimia']
-handler.tags = ['game']
-handler.command = /^tebakkimia/i
-
-module.exports = handler

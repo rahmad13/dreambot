@@ -7,7 +7,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
     let json = await res.json()
     if (!json.status) throw json
     await m.reply(wait)
-    await conn.sendFile(m.chat, json.result.data[0].url, json.result.data[0].url + json.result.data[0].type, Dream∆Bot, m)
+    await conn.sendFile(m.chat, json.result.data[0].url, json.result.data[0].url + json.result.data[0].type, 'Jangan Lupa donasi kak', m)
 }
 handler.help = ['facebook'].map(v => v + ' <url>')
 handler.tags = ['downloader']

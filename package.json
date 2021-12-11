@@ -64,7 +64,6 @@
     "pet-pet-gif": "^1.0.9",
     "node-tesseract-ocr": "^2.2.1",
     "xmldom": "^0.6.0",
-    "yargs": "^17.0.1",
-    "yt-search": "^2.9.0"
+    "yargs": "^17.0.1"
   }
 }

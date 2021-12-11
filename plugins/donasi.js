@@ -6,7 +6,7 @@ let handler = async (m, { conn }) => conn.sendButtonLoc(m.chat, await (await fet
 
 ┌〔 Donasi • Pulsa 〕
 ├ Axis [083108164709]
-├ Telkomsel [082331352342]
+├ Telkomsel [085336060095]
 └────
 `.trim(), '® DreamBot', 'Pemilik Bot', '.owner')
 handler.help = ['donasi']

@@ -28,16 +28,14 @@ handler.all = async function (m, { isBlocked }) {
     // ketika ada yang invite/kirim link grup di chat pribadi
     if ((m.mtype === 'groupInviteMessage' || m.text.startsWith('https://chat') || m.text.startsWith('Buka tautan ini')) && !m.isBaileys && !m.isGroup) {
         this.sendButton(m.chat,`┌〔 Undang Dream∆Bot ke Grup 〕
-├ 7 Hari / Rp 5,000
-├ 30 Hari / Rp 10,000
+├ 30 Hari / Rp 5,000
 └────`.trim(), '® Dream∆Bot', 'Pemilik Bot', ',owner', m)
     }
     
     // ketika ada yang sewa
     if (m.text.startsWith('sewa') || m.text.startsWith('nyewa') || m.text.startsWith('Sewa') || m.text.startsWith('Nyewa')) {
         this.sendButton(m.chat, `┌〔 Sewa Dream∆Bot ke Grup 〕
-├ 7 Hari / Rp 5,000
-├ 30 Hari / Rp 10,000
+├ 30 Hari / Rp 5,000
 └────`.trim(), '® Dream∆Bot', 'Pemilik Bot', ',owner', m)
     }
 

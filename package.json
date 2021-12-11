@@ -29,7 +29,6 @@
     "@adiwajshing/baileys": "github:melcanz/baileys",
     "awesome-phonenumber": "^2.54.0",
     "axios": "^0.21.1",
-    "brainly-scraper-v2": "^2.0.3",
     "canvacord": "^5.2.3",
     "cfonts": "^2.9.3",
     "chalk": "^4.1.1",

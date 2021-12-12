@@ -14,3 +14,5 @@ handler.command = /^(broadcast|bc)(loc)$/i
 handler.owner = true
 
 module.exports = handler
+
+const delay = time => new Promise(res => setTimeout(res, time)) 

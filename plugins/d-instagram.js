@@ -1,33 +1,86 @@
-let fetch = require('node-fetch')
-
-let handler = async (m, { conn, command, args, usedPrefix }) => {
-    if (!args[0]) throw `uhm.. urlnya mana?\n\npenggunaan:\n${usedPrefix + command} url\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/COaLQGnJFUn/`
-    if (!/https?:\/\/(www\.)?instagram\.com\/(p|reel|tv|stories)/i.test(args[0])) throw `url salah! yang bisa post, reels, tv and story`
-    if (/https?:\/\/(www\.)?instagram\.com\/(stories)/i.test(args[0])) {
-        let res = await fetch(API('amel', '/igs', { url: args[0] }, 'apikey'))
-        if (!res.ok) throw eror
-        let json = await res.json()
-        if (!json.status) throw json
-        await m.reply(wait)
-        for (let { url, type } of json.result.data) {
-            await conn.sendFile(m.chat, url, 'igs' + (type == 'jpg' ? '.jpg' : '.mp4'), '', m)
-        }
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  if (!args[0]) throw `*Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/BmjK1KOD_UG/?utm_medium=copy_link`
+  if (!args[0].match(/https:\/\/www.instagram.com\/(p|reel|tv)/gi)) throw `*Link salah! Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/CQU21b0JKwq/`
+  igdl(args[0]).then(async res => {
+    let igdl = JSON.stringify(res)
+    let json = JSON.parse(igdl)
+    for (let { downloadUrl, type } of json) {
+      await delay(1500)
+      conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '*© Aine*', m, { thumbnail: Buffer.alloc(0) })
     }
-    if (/https?:\/\/(www\.)?instagram\.com\/(p|reel|tv)/i.test(args[0])) {
-        let res = await fetch(API('amel', '/igdl', { url: args[0] }, 'apikey'))
-        if (!res.ok) throw eror
-        let json = await res.json()
-        if (!json.status) throw json
-        await m.reply(wait)
-        for (let { downloadUrl, type } of json.result) {
-            await conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '', m)
-        }
-    }
+  })
 }
-handler.help = ['instagram'].map(v => v + ' <url>')
+handler.help = ['ig'].map(v => v + ' <url>')
 handler.tags = ['downloader']
-handler.command = /^(instagram|ig)$/i
-
-handler.limit = 1
+handler.command = /^(ig|igdl|instagram)$/i
+handler.limit = true
+handler.premium = true
 
 module.exports = handler
+
+const delay = time => new Promise(res => setTimeout(res, time))*/
+
+
+
+const cheerio = require('cheerio')
+const fetch = require('node-fetch')
+const axios = require("axios")
+const qs = require("qs")
+
+let handler = async (m, { conn, args, usedPrefix, command }) => {
+  if (!args[0]) throw `*Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/BmjK1KOD_UG/?utm_medium=copy_link`
+  if (!args[0].match(/https:\/\/www.instagram.com\/(p|reel|tv)/gi)) throw `*Link salah! Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/CQU21b0JKwq/`
+  igdl(args[0]).then(async res => {
+    let igdl = JSON.stringify(res)
+    let json = JSON.parse(igdl)
+    for (let { downloadUrl, type } of json) {
+      await delay(1500)
+      conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '*© Aine*', m, { thumbnail: Buffer.alloc(0) })
+    }
+  })
+}
+handler.help = ['ig'].map(v => v + ' <url>')
+handler.tags = ['downloader']
+handler.command = /^(ig|igdl|instagram)$/i
+handler.limit = true
+handler.premium = true
+
+module.exports = handler
+
+const delay = time => new Promise(res => setTimeout(res, time)) 
+
+function igdl(url) {
+    return new Promise(async (resolve, reject) => {
+        axios.request({
+            url: 'https://www.instagramsave.com/download-instagram-videos.php',
+            method: 'GET',
+            headers: {
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+                "cookie": "PHPSESSID=ugpgvu6fgc4592jh7ht9d18v49; _ga=GA1.2.1126798330.1625045680; _gid=GA1.2.1475525047.1625045680; __gads=ID=92b58ed9ed58d147-221917af11ca0021:T=1625045679:RT=1625045679:S=ALNI_MYnQToDW3kOUClBGEzULNjeyAqOtg"
+            }
+        })
+            .then(({ data }) => {
+                const $ = cheerio.load(data)
+                const token = $('#token').attr('value')
+                let config = {
+                    headers: {
+                        'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                        "sec-ch-ua": '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
+                        "cookie": "PHPSESSID=ugpgvu6fgc4592jh7ht9d18v49; _ga=GA1.2.1126798330.1625045680; _gid=GA1.2.1475525047.1625045680; __gads=ID=92b58ed9ed58d147-221917af11ca0021:T=1625045679:RT=1625045679:S=ALNI_MYnQToDW3kOUClBGEzULNjeyAqOtg",
+                        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+                    },
+                    data: {
+                        'url': url,
+                        'action': 'post',
+                        'token': token
+                    }
+                }
+                axios.post('https://www.instagramsave.com/system/action.php', qs.stringify(config.data), { headers: config.headers })
+                    .then(({ data }) => {
+                        resolve(data.medias)
+                    })
+            })
+            .catch(reject)
+    })
+}
+

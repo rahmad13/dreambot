@@ -11,7 +11,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     let json = JSON.parse(igdl)
     for (let { downloadUrl, type } of json) {
       await delay(1500)
-      conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '*© Aine*', m, { thumbnail: Buffer.alloc(0) })
+      conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '® Dream∆Bot', m, { thumbnail: Buffer.alloc(0) })
     }
   })
 }
@@ -19,7 +19,7 @@ handler.help = ['ig'].map(v => v + ' <url>')
 handler.tags = ['downloader']
 handler.command = /^(ig|igdl|instagram)$/i
 handler.limit = true
-handler.premium = true
+handler.premium = false
 
 module.exports = handler
 

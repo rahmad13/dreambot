@@ -78,9 +78,6 @@ conn.user = {
   phone: {},
   ...(conn.user || {})
 }
-
-if (opts['termux']) global.UsingCanvasAPI = true;
-
 if (opts['test']) {
   conn.user = {
     jid: '2219191@s.whatsapp.net',

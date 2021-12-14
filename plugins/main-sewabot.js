@@ -3,7 +3,7 @@ let handler = async (m, { conn }) => {
     pepe = 'https://telegra.ph/file/730f48f2524271f9c752a.jpg'
     baper = await fetch(pepe).then(a => a.buffer())
     let listMessage = {
-        "title": "melcanz-bot",
+        "title": "Dream∆Bot",
         "description": `
 *melcanz-bot*
         

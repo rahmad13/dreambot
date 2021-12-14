@@ -5,7 +5,7 @@ let handler = async (m, { conn }) => {
     let listMessage = {
         "title": "Dream∆Bot",
         "description": `
-*melcanz-bot*
+*Dream∆Bot*
         
 1 Grup / 30 Hari
 Rp. 5,000 Dana

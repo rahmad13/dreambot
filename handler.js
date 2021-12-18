@@ -658,7 +658,7 @@ module.exports = {
                   .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
                   .toAttachment();
 
-                this.sendFile(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), 'pp.jpg', text, null, false, {
+                this.sendMessage(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), text, null, false, {
                   contextInfo: {
                     mentionedJid: [user]
                   }

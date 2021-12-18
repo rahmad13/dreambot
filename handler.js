@@ -627,52 +627,29 @@ module.exports = {
         if (chat.welcome) {
           let groupMetadata = await this.groupMetadata(jid)
           for (let user of participants) {
-            // let pp = './src/avatar_contact.png'
-            let pp = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
-            let ppgc = 'https://i.ibb.co/jr9Nh6Q/Thumb.jpg'
+            if (user.includes(this.user.jid)) return // biar ngga nyambut diri sendiri, kalo simulasi harus tag yang lain
+            let pp = './src/avatar_contact.png'
             try {
-              pp = await uploadImage(await (await fetch(await this.getProfilePicture(user))).buffer())
-              ppgc = await uploadImage(await (await fetch(await this.getProfilePicture(jid))).buffer())
+              pp = await this.getProfilePicture(user)
             } catch (e) {
             } finally {
-              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'Selamat datang, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
-                (chat.sBye || this.bye || conn.bye || 'Sampai jumpa, @user!')).replace(/@user/g, '@' + user.split`@`[0])
-              let wel, lea;
-              if(!global.UsingCanvasAPI){
-                const knights = require('knights-canvas')
-                wel = await new knights.Welcome()
-                  .setUsername(this.getName(user))
-                  .setGuildName(this.getName(jid))
-                  .setGuildIcon(ppgc)
-                  .setMemberCount(groupMetadata.participants.length)
-                  .setAvatar(pp)
-                  .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
-                  .toAttachment()
-
-                lea = await new knights.Goodbye()
-                  .setUsername(this.getName(user))
-                  .setGuildName(this.getName(jid))
-                  .setGuildIcon(ppgc)
-                  .setMemberCount(groupMetadata.participants.length)
-                  .setAvatar(pp)
-                  .setBackground("https://i.ibb.co/KhtRxwZ/dark.png")
-                  .toAttachment();
-
-                this.sendMessage(jid, action === 'add' ? wel.toBuffer() : lea.toBuffer(), text, null, false, {
-                  contextInfo: {
-                    mentionedJid: [user]
-                  }
-                })
-              } else {
-                wel = `${global.CanvasAPI != '' ? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatewelcome?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
-                lea = `${global.CanvasAPI != ''? global.canvasAPI : 'https://canvas-heroku-stikerinbot.herokuapp.com'}/generatebye?username=${this.getName(user)}&groupname=${this.getName(jid)}&grouplength=${groupMetadata.participants.length}&avatarurl=${pp}&groupavatar=${ppgc}` // If You Want Custom Background Add &bg=URL
-                await this.sendButtonLoc(jid, await (await fetch(action === 'add' ? wel : lea)).buffer(), text, wm, action === 'add' ? 'WELCOME' : 'GOODBYE', action === 'add' ? 'null' : 'null', null, {
-                thumbnail: await (await fetch(action === 'add' ? wel : lea)).buffer(),
-                contextInfo: {
-                    mentionedJid: [user]
-              }
-             })
-              }
+              text = (action === 'add' ? (chat.sWelcome || this.welcome || conn.welcome || 'selamat datang, @user!').replace('@subject', this.getName(jid)).replace('@desc', groupMetadata.desc ? String.fromCharCode(8206).repeat(4001) + groupMetadata.desc : '') :
+                (chat.sBye || this.bye || conn.bye || 'sampai jumpa, @user!')).replace(/@user/g, '@' + user.split('@')[0])
+              let wel = API('amel', '/welcome2', {
+                username: this.getName(user),
+                groupname: this.getName(jid),
+                membercount: groupMetadata.participants.length,
+                profile: pp,
+                background: 'https://i.ibb.co/KhtRxwZ/dark.png'
+              }, 'apikey')
+              let lea = API('amel', '/goodbye2', {
+                username: this.getName(user),
+                groupname: this.getName(jid),
+                membercount: groupMetadata.participants.length,
+                profile: pp,
+                background: 'https://i.ibb.co/KhtRxwZ/dark.png'
+              }, 'apikey')
+              await this.sendButtonLoc(jid, action === 'add' ? wel : lea, text, wm, action === 'add' ? 'selamat datang' : 'sampai jumpa', 'ariffb')
             }
           }
         }

@@ -24,7 +24,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   if (teks == 'all') tags = {
     'main': 'Utama',
     'game': 'Game',
-'rpg': 'RPG', 
+    'rpg': 'RPG', 
+    'kingdom': 'Kerajaan'
     'jadian': 'Jadian', 
     'xp': 'Exp & Limit',
     'sticker': 'Stiker',
@@ -49,10 +50,9 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     '': 'Tanpa Kategori',
   }
   if (teks == 'game') tags = {
-    'game': 'Game'
-  }
-if (teks == 'rpg') tags = {
-    'rpg': 'RPG'
+    'game': 'Game', 
+    'rpg': 'RPG', 
+    'kingdom': 'Kerajaan'
   }
   if (teks == 'jadian') tags = {
     'jadian': 'Jadian'
@@ -194,7 +194,7 @@ if (teks == 'rpg') tags = {
 
 ⛧ Uptime: *${uptime}*
 ⛧ Database: ${rtotalreg} dari ${totalreg}`.trim(),
-          "description": "```NOTE: Jangan di spam atau mau di spam balik pakek virus? ```",
+          "description": "```NOTE: Kalok mau sewabot ketik /sewabot```",
           "buttonText": "List Menu Dream∆Bot",
           "listType": "SINGLE_SELECT",
           "sections": [
@@ -208,10 +208,6 @@ if (teks == 'rpg') tags = {
                   "title": "Game",
                   "description": "",
                   "rowId": "/? game"
-                 }, {
-"title": "RPG",
-                  "description": "",
-                  "rowId": "/? rpg"
                  }, {
                   "title": "Jadian",
                   "description": "",

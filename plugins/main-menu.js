@@ -25,7 +25,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
     'main': 'Utama',
     'game': 'Game',
     'rpg': 'RPG', 
-    'kingdom': 'Kerajaan'
+    'kingdom': 'Kerajaan', 
     'jadian': 'Jadian', 
     'xp': 'Exp & Limit',
     'sticker': 'Stiker',

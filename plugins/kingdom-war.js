@@ -88,7 +88,7 @@ Kamu kehilangan:
 }
 
 handler.help = ['war <tag>']
-handler.tags = ['rpg']
+handler.tags = ['kingdom']
 handler.command = /^(war)/i
 
 handler.owner = false

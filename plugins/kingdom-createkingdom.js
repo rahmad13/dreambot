@@ -57,7 +57,7 @@ ${usedPrefix}Mykingdom
 }
 
 handler.help = ['kingdom name|name kingdom|@tag']
-handler.tags = ['rpg']
+handler.tags = ['kingdom']
 
 module.exports = handler
 

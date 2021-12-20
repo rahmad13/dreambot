@@ -67,7 +67,7 @@ conn.sendFile( m.chat, imgk, 'kerajaa.jpg', caption, m, false, {
 }
 
 handler.help = ['mykingdom','mykrjn','kerajaanku']
-handler.tags = ['rpg']
+handler.tags = ['kingdom']
 handler.command = /^(mykingdom|kerajaanku)/i
 
 handler.owner = false

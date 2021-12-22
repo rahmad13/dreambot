@@ -2,10 +2,13 @@ let { MessageType } = require('@adiwajshing/baileys')
 let PhoneNumber = require('awesome-phonenumber')
 let { buttonsMessage, contactsArray, image, MimeType } = MessageType
 let fs = require('fs')
-//LU SIAPA?
-//JANGAN COLONG ANJG
+
 let handler = async (m, { conn, text, usedPrefix, participants }) => {
 
+let who
+  if (m.isGroup) who = m.mentionedJid[0]
+  else who = m.chat
+  
 let imgk = fs.readFileSync('./lib/kerajaan.jpg')
 
 let kingdom = global.db.data.users[m.sender]
@@ -18,7 +21,7 @@ let trops = global.db.data.users[m.sender].troops
 let lvl = global.db.data.users[m.sender].lvl
 let populasi = global.db.data.users[m.sender].population
 let name = global.db.data.users[m.sender].namk
-let aliance = global.db.data.users[m.sender].aliance
+let aliance = global.db.data.users[who].aliance
 let koin = global.db.data.users[m.sender].koin
 
 let benteng = global.db.data.users[m.sender].fortress
@@ -48,7 +51,7 @@ _[ ❕ ]YOUR KINGDOM INFO_
 ${ benteng == 0 ? 'Tidak punya benteng' : '' || benteng == 1 ? 'benteng kayu' : '' || benteng == 2 ? 'benteng beton' : '' }
 ⚔️Last war:-
 🏳️teman Aliansi:
-${aliance}
+${who.replace(/@.+/, '')}
 ⚔️To war typing:
 ${usedPrefix}war @mention
 🏰Bangun Dan level up kerajaan

@@ -21,7 +21,7 @@ let handler = async (m, { conn, text }) => {
 └────`.trim())
     conn.skata = conn.skata ? conn.skata : {}
     let id = m.chat
-    let res = await fetch(API('amel', '/sambungkata', {}, 'apikey'))
+    let res = await fetch(API('mel', '/sambungkata', {}, 'apikey'))
     if (!res.ok) throw eror
     let json = await res.json()
     if (!json.status) throw json

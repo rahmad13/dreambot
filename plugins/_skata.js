@@ -13,7 +13,7 @@ handler.before = async function (m) {
     if (!(id in this.skata)) return await this.sendButton(m.chat, `Mulai lagi?`, wm, 'Sambung Kata', '.skata', m)
     if (m.quoted.id == this.skata[id][0].id) {
         let answerF = (m.text.toLowerCase().split` `[0]).trim()
-        let res = await fetch(API('amel', '/ceksambungkata', { kata: m.text.toLowerCase().split` `[0] }, 'apikey'))
+        let res = await fetch(API('mel', '/ceksambungkata', { kata: m.text.toLowerCase().split` `[0] }, 'apikey'))
         if (!res.ok) throw eror
         let json = await res.json()
         if (!answerF.startsWith(this.filter(this.skata[id][1]))) {

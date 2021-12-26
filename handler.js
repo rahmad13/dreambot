@@ -176,7 +176,7 @@ module.exports = {
             if (!('autolevelup' in user)) user.autolevelup = false
             if (!('pasangan' in user)) user.pasangan = ''
             if (!('nikah' in user)) user.nikah = ''
-        } else global.DATABASE._data.users[m.sender] = {
+        } else global.db.data.users[m.sender] = {
             healt: 100,
             stamina: 100,
             level: 0,

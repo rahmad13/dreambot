@@ -34,7 +34,7 @@ global.APIKeys = { // APIKey nya disini
 
 // Sticker WM
 global.packname = 'wa.me/6285336060095'
-global.author = 'DreamBot'
+global.author = 'Dream∆Bot'
 
 global.botwm = 'Dream∆Bot'
 

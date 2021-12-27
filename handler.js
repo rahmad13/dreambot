@@ -8,7 +8,7 @@ const isNumber = x => typeof x === 'number' && !isNaN(x)
 const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, ms))
 module.exports = {
   async handler(chatUpdate) {
-    if (global.db.data == null) await global.loadDatabase()
+    // console.log(chatUpdate)
     if (!chatUpdate.hasNewMessage) return
     if (!chatUpdate.messages && !chatUpdate.count) return
     let m = chatUpdate.messages.all()[0]
@@ -28,7 +28,7 @@ module.exports = {
         let user = global.db.data.users[m.sender]
         if (typeof user !== 'object') global.db.data.users[m.sender] = {}
         if (user) {
-               if (!isNumber(user.healt)) user.healt = 0
+            if (!isNumber(user.healt)) user.healt = 0
             if (!isNumber(user.stamina)) user.stamina = 0
             if (!isNumber(user.level)) user.level = 0
             if (!isNumber(user.exp)) user.exp = 0

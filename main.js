@@ -33,7 +33,7 @@ global.timestamp = {
 const PORT = process.env.PORT || 3000
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 
-global.prefix = new RegExp('^[' + (opts['prefix'] || '\.~#/$,').replace(/[|\\{}()[\]^$+*?\-\^]/g, '\\$') + ']')
+global.prefix = new RegExp('^[' + (opts['prefix'] || '\.~!#/$,').replace(/[|\\{}()[\]^$+*?\-\^]/g, '\\$') + ']')
 
 global.db = new Low(
   /https?:\/\//.test(opts['db'] || '') ?
@@ -64,6 +64,7 @@ global.loadDatabase = async function loadDatabase() {
 loadDatabase()
 
 global.conn = new WAConnection()
+conn.version = [2, 2140, 14]
 conn.browserDescription = ['Dream∆bot', 'Chrome', '3.0']
 let authFile = opts['session'] ? opts['session'] + '.json' : `session.data.json`
 if (fs.existsSync(authFile)) conn.loadAuthInfo(authFile)

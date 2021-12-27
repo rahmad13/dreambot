@@ -19,6 +19,7 @@ try {
   low = require('./lib/lowdb')
 }
 const { Low, JSONFile } = low
+const mongoDB = require('./lib/mongoDB')
 
 const rl = Readline.createInterface(process.stdin, process.stdout)
 const WAConnection = simple.WAConnection(_WAConnection)
@@ -32,25 +33,54 @@ global.timestamp = {
 const PORT = process.env.PORT || 3000
 global.opts = new Object(yargs(process.argv.slice(2)).exitProcess(false).parse())
 
-global.prefix = new RegExp('^[' + (opts['prefix'] || '‎xzXZ/!#$%+£¢€¥^°=¶∆×÷π√✓©®:;?&,.\\-').replace(/[|\\{}()[\]^$+*?.\-\^]/g, '\\$&') + ']')
+global.prefix = new RegExp('^[' + (opts['prefix'] || '\.~#/$,').replace(/[|\\{}()[\]^$+*?\-\^]/g, '\\$') + ']')
 
 global.db = new Low(
-  new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
+  /https?:\/\//.test(opts['db'] || '') ?
+    new cloudDBAdapter(opts['db']) :
+    /mongodb/.test(opts['db']) ?
+      new mongoDB(opts['db']) :
+      new JSONFile(`${opts._[0] ? opts._[0] + '_' : ''}database.json`)
 )
 global.DATABASE = global.db // Backwards Compatibility
 
+global.loadDatabase = async function loadDatabase() {
+  if (global.db.READ) return new Promise((resolve) => setInterval(function () { (!global.db.READ ? (clearInterval(this), resolve(global.db.data == null ? global.loadDatabase() : global.db.data)) : null) }, 0.5 * 1000))
+  if (global.db.data !== null) return
+  global.db.READ = true
+  await global.db.read()
+  global.db.READ = false
+  global.db.data = {
+    users: {},
+    chats: {},
+    stats: {},
+    msgs: {},
+    sticker: {},
+    settings: {},
+    ...(global.db.data || {})
+  }
+  global.db.chain = _.chain(global.db.data)
+}
+loadDatabase()
+
 global.conn = new WAConnection()
-conn.version = [2, 2140, 14]
-let authFile = `${opts._[0] || 'session'}.data.json`
+conn.browserDescription = ['Dream∆bot', 'Chrome', '3.0']
+let authFile = opts['session'] ? opts['session'] + '.json' : `session.data.json`
 if (fs.existsSync(authFile)) conn.loadAuthInfo(authFile)
 if (opts['trace']) conn.logger.level = 'trace'
 if (opts['debug']) conn.logger.level = 'debug'
 if (opts['big-qr'] || opts['server']) conn.on('qr', qr => generate(qr, { small: false }))
 if (!opts['test']) setInterval(async () => {
   await global.db.write()
-}, 10 * 1000) // Save every minute
+}, 60 * 1000) // menyimpan setiap menit
 if (opts['server']) require('./server')(global.conn, PORT)
 
+conn.user = {
+  jid: '',
+  name: '',
+  phone: {},
+  ...(conn.user || {})
+}
 if (opts['test']) {
   conn.user = {
     jid: '2219191@s.whatsapp.net',
@@ -96,17 +126,7 @@ if (opts['test']) {
     process.send(line.trim())
   })
   conn.connect().then(async () => {
-    await global.db.read()
-    global.db.data = {
-      users: {},
-      chats: {},
-      stats: {},
-      msgs: {},
-      sticker: {},
-      settings: {},
-      ...(global.db.data || {})
-    }
-    global.db.chain = _.chain(global.db.data)
+    if (global.db.data == null) await loadDatabase()
     fs.writeFileSync(authFile, JSON.stringify(conn.base64EncodedAuthInfo(), null, '\t'))
     global.timestamp.connect = new Date
   })
@@ -124,8 +144,8 @@ global.reloadHandler = function () {
     conn.off('group-update', conn.onGroupUpdate)
     conn.off('CB:action,,call', conn.onCall)
   }
-  conn.welcome = 'Hai, @user!\nSelamat datang di grup @subject\n\n@desc'
-  conn.bye = '@user keluar'
+  conn.welcome = 'hai, @user!\nselamat datang digrup @subject\n\n@desc'
+  conn.bye = 'sampai jumpa @user!'
   conn.spromote = '@user sekarang admin'
   conn.sdemote = '@user sekarang bukan admin'
   conn.handler = handler.handler
@@ -171,19 +191,20 @@ for (let filename of fs.readdirSync(pluginFolder).filter(pluginFilter)) {
     delete global.plugins[filename]
   }
 }
+// console.log(Object.keys(global.plugins))
 global.reload = (_event, filename) => {
   if (pluginFilter(filename)) {
     let dir = path.join(pluginFolder, filename)
     if (dir in require.cache) {
       delete require.cache[dir]
-      if (fs.existsSync(dir)) conn.logger.info(`kembali - memerlukan plugin '${filename}'`)
+      if (fs.existsSync(dir)) conn.logger.info(`perubahan plugin '${filename}'`)
       else {
-        conn.logger.warn(`plugin yang dihapus '${filename}'`)
+        conn.logger.warn(`penghapusan plugin '${filename}'`)
         return delete global.plugins[filename]
       }
-    } else conn.logger.info(`membutuhkan plugin baru '${filename}'`)
+    } else conn.logger.info(`memerlukan plugin baru '${filename}'`)
     let err = syntaxerror(fs.readFileSync(dir), filename)
-    if (err) conn.logger.error(`kesalahan sintaks saat memuat '${filename}'\n${err}`)
+    if (err) conn.logger.error(`syntax error ketika membaca '${filename}'\n${err}`)
     else try {
       global.plugins[filename] = require(dir)
     } catch (e) {
@@ -221,6 +242,7 @@ async function _quickTest() {
     ])
   }))
   let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm] = test
+  console.log(test)
   let s = global.support = {
     ffmpeg,
     ffprobe,
@@ -232,9 +254,9 @@ async function _quickTest() {
   require('./lib/sticker').support = s
   Object.freeze(global.support)
 
-  if (!s.ffmpeg) conn.logger.warn('Silakan instal ffmpeg untuk mengirim video (pkg install ffmpeg)')
-  if (s.ffmpeg && !s.ffmpegWebp) conn.logger.warn('Stiker tidak bisa dianimasikan tanpa libwebp di ffmpeg (--enable-ibwebp while compiling ffmpeg)')
-  if (!s.convert && !s.magick && !s.gm) conn.logger.warn('Stiker mungkin tidak berfungsi tanpa imagemagick jika libwebp di ffmpeg tidak diinstal (pkg install imagemagick)')
+  if (!s.ffmpeg) conn.logger.warn('silakan instal ffmpeg untuk mengirim video (pkg install ffmpeg)')
+  if (s.ffmpeg && !s.ffmpegWebp) conn.logger.warn('stiker tidak boleh dianimasikan tanpa libwebp di ffmpeg (--enable-ibwebp while compiling ffmpeg)')
+  if (!s.convert && !s.magick && !s.gm) conn.logger.warn('stiker mungkin tidak berfungsi tanpa imagemagick jika libwebp di ffmpeg tidak diinstal (pkg install imagemagick)')
 }
 
 _quickTest()

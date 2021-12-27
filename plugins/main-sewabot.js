@@ -9,10 +9,10 @@ let handler = async (m, { conn }) => {
         
 1 Grup / 30 Hari
 Rp. 5,000 Dana
-Rp. 10,000 Pulsa Telkomsel
+Rp. 5,000 Pulsa Telkomsel
 1 Grup / 60 Hari
 Rp. 10,000 Dana
-Rp. 15,000 Pulsa Telkomsel
+Rp. 10,000 Pulsa Telkomsel
 tertarik? hubungi:
 @6283108164709
 `.trim(),

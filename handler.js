@@ -327,12 +327,10 @@ module.exports = {
           if (!('sDemote' in chat)) chat.sDemote = ''
           if (!('descUpdate' in chat)) chat.descUpdate = true
           if (!('stiker' in chat)) chat.stiker = false
-          if (!('clear' in chat)) chat.clear = false
-          if (!isNumber(chat.clearTime)) chat.clearTime = (new Date() * 1) + 3600000 * 1
           if (!('delete' in chat)) chat.delete = true
           if (!('antiLink' in chat)) chat.antiLink = false
           if (!isNumber(chat.expired)) chat.expired = 0
-          if (!('antiBadword' in chat)) chat.antiBadword = false
+          if (!('antiBadword' in chat)) chat.antiBadword = true
           if (!('viewonce' in chat)) chat.viewonce = true
         } else global.db.data.chats[m.chat] = {
           isBanned: false,
@@ -344,12 +342,10 @@ module.exports = {
           sDemote: '',
           descUpdate: true,
           stiker: false,
-          clear: false,
-          clearTime: (new Date() * 1) + 3600000 * 1,
           delete: true,
           antiLink: false,
           expired: 0,
-          antiBadword: false,
+          antiBadword: true,
           viewonce: true,
         }
 

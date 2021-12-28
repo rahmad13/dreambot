@@ -16,4 +16,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["node", "index", "--db", "mongodb+srv://rahmad001:rahmad001@cluster0.uezbk.mongodb.net/Cluster0?retryWrites=true&w=majority"]
+CMD ["node", "index", "--db", "mongodb+srv://rahmad001:rahmad001@cluster0.uezbk.mongodb.net/rahmad?retryWrites=true&w=majority"]

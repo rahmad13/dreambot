@@ -4,6 +4,7 @@ const cloudDBAdapter = require('./lib/cloudDBAdapter')
 const { generate } = require('qrcode-terminal')
 const syntaxerror = require('syntax-error')
 const simple = require('./lib/simple')
+//  const logs = require('./lib/logs')
 const { promisify } = require('util')
 const yargs = require('yargs/yargs')
 const Readline = require('readline')
@@ -43,7 +44,7 @@ global.db = new Low(
 )
 global.DATABASE = global.db // Backwards Compatibility
 global.loadDatabase = async function loadDatabase() {
-  if (global.db.READ) return new Promise((resolve) => setInterval(function () { (!global.db.READ ? (clearInterval(this), resolve(global.db.data == null ? global.loadDatabase() : global.db.data)) : null) }, 0.5 * 1000))
+  if (global.db.READ) return new Promise((resolve) => setInterval(function () {(!global.db.READ ? (clearInterval(this), resolve(global.db.data == null ? global.loadDatabase() : global.db.data)) : null)}, 0.5 * 1000))
   if (global.db.data !== null) return
   global.db.READ = true
   await global.db.read()
@@ -54,7 +55,6 @@ global.loadDatabase = async function loadDatabase() {
     stats: {},
     msgs: {},
     sticker: {},
-    settings: {},
     ...(global.db.data || {})
   }
   global.db.chain = _.chain(global.db.data)
@@ -63,7 +63,7 @@ loadDatabase()
 
 global.conn = new WAConnection()
 conn.version = [2, 2143, 3]
-let authFile = opts['session'] ? opts['session'] + '.json' : `session.data.json`
+let authFile = `${opts._[0] || 'session'}.data.json`
 if (fs.existsSync(authFile)) conn.loadAuthInfo(authFile)
 if (opts['trace']) conn.logger.level = 'trace'
 if (opts['debug']) conn.logger.level = 'debug'
@@ -256,5 +256,5 @@ async function _quickTest() {
 }
 
 _quickTest()
-  .then(() => conn.logger.info('Pengetesan Cepat Selesai'))
+  .then(() => conn.logger.info('Quick Test Done'))
   .catch(console.error)

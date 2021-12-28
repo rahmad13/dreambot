@@ -337,7 +337,7 @@ module.exports = {
           if (!('download' in chat)) chat.download = true
           if (!isNumber(chat.expired)) chat.expired = 0
           if (!('getmsg' in chat)) chat.getmsg = false
-          if (!('read' in chat)) chat.read = true
+          if (!('read' in chat)) chat.read = false
           if (!('stiker' in chat)) chat.stiker = false
           if (!('viewonce' in chat)) chat.viewonce = true
         } else global.db.data.chats[m.chat] = {
@@ -355,7 +355,7 @@ module.exports = {
           download: true,
           expired: 0,
           getmsg: false,
-          read: true,
+          read: false,
           stiker: false,
           viewonce: true,
         }

@@ -7,7 +7,7 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/*
 
 COPY package.json .
-RUN npm install -g npm@7.20.5
+RUN npm install -g npm@8.3.0
 RUN npm install i
 RUN npm install ytdl-core
 RUN npm install yt-search

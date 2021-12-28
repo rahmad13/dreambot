@@ -1,7 +1,7 @@
 {
-  "name": "stikerinbot",
+  "name": "dreambot",
   "description": "Lightweight WhatsApp Bot",
-  "repository": "https://github.com/ariffb25/stikerinbot",
+  "repository": "https://github.com/rahmad13/dreambot",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
   "keywords": [
     "bot",
